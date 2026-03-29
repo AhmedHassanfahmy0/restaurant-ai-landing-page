@@ -174,7 +174,8 @@
     .hero-card,
     .card,
     .cta-box,
-    .price-card{
+    .price-card,
+    .roi-card{
       background:var(--card);
       border:1px solid var(--line);
       border-radius:24px;
@@ -328,6 +329,30 @@
       display:block;
       color:var(--muted);
       font-size:15px;
+    }
+    
+    /* ROI & Trust Signals Styles */
+    .roi-card {
+      padding: 24px;
+      text-align: center;
+      background: linear-gradient(145deg, rgba(245,158,11,.08), rgba(255,255,255,.03));
+      border-color: rgba(245,158,11,.15);
+    }
+    
+    .roi-number {
+      font-size: 48px;
+      font-weight: 900;
+      color: var(--accent);
+      line-height: 1.1;
+      margin-bottom: 8px;
+      direction: ltr;
+    }
+    
+    .trust-stat {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--brand);
+      margin-bottom: 5px;
     }
 
     .pricing{
@@ -569,6 +594,26 @@
       </div>
     </section>
 
+    <!-- NEW SECTION: ROI Focus -->
+    <section id="roi-focus">
+      <div class="container">
+        <div class="section-head fade-up">
+          <h2>بلغة الأرقام.. ليه النظام ده استثمار مش تكلفة؟</h2>
+          <p>المطاعم بتخسر يومياً بسبب العملاء اللي بيسألوا ومبيكملوش. شوف الحسبة البسيطة دي:</p>
+        </div>
+        
+        <div class="roi-card fade-up delay-1">
+          <h3 style="margin-top:0;">لو بيضيع منك 10 أوردرات بس في اليوم</h3>
+          <p style="color:var(--muted); font-size:16px;">بمتوسط قيمة الأوردر 300 جنيه</p>
+          <div class="roi-number">90,000 EGP</div>
+          <p style="color:#f8fafc; font-size:18px; font-weight:bold;">خسارة شهرية من المبيعات الضائعة!</p>
+          <p style="color:var(--muted); margin-bottom:0; font-size:15px;">
+            ClientFlow AI بيسترجعلك نسبة كبيرة من المبيعات دي بمتابعة آلية بتكلفة اشتراك أقل بكتير من حجم الخسارة.
+          </p>
+        </div>
+      </div>
+    </section>
+
     <section id="solution">
       <div class="container">
         <div class="section-head fade-up">
@@ -593,6 +638,36 @@
             <div class="icon">📊</div>
             <h3>رؤية أوضح</h3>
             <p>Dashboard مبسطة تساعدك على مراجعة الحالات المهمة بطريقة أسهل.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- NEW SECTION: Trust Signals -->
+    <section id="trust-signals">
+      <div class="container">
+        <div class="section-head fade-up">
+          <h2>الأداء المتوقع من ClientFlow AI</h2>
+          <p>نظام مبني ليتفوق على قدرة البشر في المتابعة وقت الزحمة والضغط.</p>
+        </div>
+
+        <div class="grid-3">
+          <div class="card fade-up">
+            <div class="trust-stat">أقل من ثانية</div>
+            <h3 style="font-size:18px;">سرعة الرد الآلي</h3>
+            <p style="font-size:14px;">مقارنة بمتوسط 5-15 دقيقة للرد البشري وقت ضغط الأوردرات.</p>
+          </div>
+
+          <div class="card fade-up delay-1">
+            <div class="trust-stat">100%</div>
+            <h3 style="font-size:18px;">متابعة دقيقة (Follow-up)</h3>
+            <p style="font-size:14px;">لا يوجد عميل سيسأل عن المنيو ويتم نسيانه، النظام سيتابعه تلقائياً.</p>
+          </div>
+
+          <div class="card fade-up delay-2">
+            <div class="trust-stat">+20%</div>
+            <h3 style="font-size:18px;">تحسين متوقع للمبيعات</h3>
+            <p style="font-size:14px;">بناءً على تحويل العملاء المترددين (Leads) إلى أوردرات فعلية عبر المتابعة.</p>
           </div>
         </div>
       </div>
