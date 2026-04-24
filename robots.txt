@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://rawabat.github.io/clientflow/sitemap.xml

@@ -1,0 +1,16 @@
+{
+  "name": "ClientFlow AI",
+  "short_name": "ClientFlow",
+  "start_url": "/clientflow/",
+  "display": "standalone",
+  "background_color": "#06111d",
+  "theme_color": "#06111d",
+  "icons": [
+    {
+      "src": "/clientflow/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
