@@ -2,867 +2,1718 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ClientFlow AI | نظام متابعة ذكي لمطاعم التوصيل</title>
-  <meta name="description" content="ClientFlow AI نظام ذكي لمطاعم التوصيل في مصر يساعدك على تقليل ضياع العملاء والطلبات، وتنظيم الرسائل على واتساب وإنستجرام، وتحسين المتابعة بشكل عملي." />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>ClientFlow AI | كل رسالة واتساب ممكن تكون طلب</title>
+  <meta name="description" content="ClientFlow AI يحول واتساب مطعمك إلى AI Sales Agent يرد فوراً، يقفل الطلبات، ويتابع العملاء المترددين 24/7." />
+  <meta name="keywords" content="بوت واتساب مطعم, أتمتة مطاعم الخليج, نظام طلبات واتساب, ذكاء اصطناعي مطعم, ClientFlow, بوت طلبات الكويت, أتمتة مطعم السعودية" />
+  <meta name="author" content="ClientFlow AI" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#06111d" />
+  <meta name="application-name" content="ClientFlow AI" />
+  <meta name="apple-mobile-web-app-title" content="ClientFlow AI" />
+
+  <link rel="canonical" href="https://rawabat.github.io/clientflow/" />
+
+  <!-- Favicons -->
+  <link rel="icon" href="/clientflow/favicon.svg" type="image/svg+xml" />
+  <link rel="alternate icon" href="/clientflow/favicon.svg" />
+  <link rel="manifest" href="/clientflow/site.webmanifest" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content="ClientFlow AI" />
+  <meta property="og:locale" content="ar_AR" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="ClientFlow AI | كل رسالة واتساب ممكن تكون طلب" />
+  <meta property="og:description" content="يرد فوراً، يقفل الطلبات، ويزيد مبيعات مطعمك على واتساب 24/7." />
+  <meta property="og:url" content="https://rawabat.github.io/clientflow/" />
+  <meta property="og:image" content="https://rawabat.github.io/clientflow/hero.png" />
+  <meta property="og:image:secure_url" content="https://rawabat.github.io/clientflow/hero.png" />
+  <meta property="og:image:type" content="image/png" />
+  <meta property="og:image:width" content="1365" />
+  <meta property="og:image:height" content="768" />
+  <meta property="og:image:alt" content="ClientFlow AI بوت واتساب ذكي لمطاعم الخليج" />
+
+  <!-- Twitter / X -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="ClientFlow AI | كل رسالة واتساب ممكن تكون طلب" />
+  <meta name="twitter:description" content="حوّل واتساب مطعمك إلى قناة بيع تعمل 24/7." />
+  <meta name="twitter:image" content="https://rawabat.github.io/clientflow/hero.png" />
+  <meta name="twitter:image:alt" content="ClientFlow AI بوت واتساب ذكي لمطاعم الخليج" />
+
   <style>
-    :root{
-      --bg:#0b1220;
-      --bg2:#0f172a;
-      --card:rgba(255,255,255,.05);
-      --line:rgba(255,255,255,.08);
-      --text:#f8fafc;
-      --muted:#cbd5e1;
-      --brand:#25D366;
-      --brand-dark:#1faa52;
-      --accent:#f59e0b;
-      --shadow:0 12px 35px rgba(0,0,0,.22);
-      --radius:20px;
-      --max:1180px;
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --green: #20f57a;
+      --green-dark: #11c864;
+      --bg: #06111d;
+      --bg2: #0b1728;
+      --bg3: #102038;
+      --text: #f2f7fb;
+      --text-muted: #9fb1c5;
+      --border: #1b314b;
+      --danger: #ff9b9b;
+      --shadow-green: 0 14px 36px rgba(32,245,122,.22);
+      --shadow-card: 0 18px 50px rgba(0,0,0,.28);
+      --radius: 20px;
     }
 
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{
-      margin:0;
-      font-family:"Tahoma","Arial",sans-serif;
-      background:linear-gradient(180deg,var(--bg) 0%,var(--bg2) 100%);
-      color:var(--text);
-      line-height:1.8;
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      overflow-x: hidden;
+      padding-bottom: 96px;
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
     }
 
-    a{text-decoration:none;color:inherit}
-    .container{width:min(92%, var(--max)); margin:auto;}
-
-    .fade-up{
-      opacity:0;
-      transform:translateY(16px);
-      animation:fadeUp .8s ease forwards;
-    }
-    .delay-1{animation-delay:.1s}
-    .delay-2{animation-delay:.2s}
-    .delay-3{animation-delay:.3s}
-    .delay-4{animation-delay:.4s}
-
-    @keyframes fadeUp{
-      to{opacity:1; transform:translateY(0)}
+    img {
+      display: block;
+      max-width: 100%;
+      height: auto;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      min-height:54px;
-      padding:14px 24px;
-      border:none;
-      border-radius:16px;
-      font-size:16px;
-      font-weight:800;
-      cursor:pointer;
-      transition:.25s ease;
-      white-space:nowrap;
+    a { text-decoration: none; color: inherit; }
+
+    button, input, textarea, select {
+      font: inherit;
     }
 
-    .btn-whatsapp{
-      background:var(--brand);
-      color:#052e16;
-      box-shadow:0 10px 24px rgba(37,211,102,.30);
+    .container {
+      width: min(1200px, 92%);
+      margin: 0 auto;
     }
 
-    .btn-whatsapp:hover{
-      background:var(--brand-dark);
-      color:#ecfdf5;
-      transform:translateY(-2px);
+    section {
+      padding: 84px 0;
     }
 
-    .btn-ghost{
-      background:transparent;
-      color:var(--text);
-      border:1px solid rgba(255,255,255,.12);
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0,0,0,0);
+      white-space: nowrap;
+      border: 0;
     }
 
-    .btn-ghost:hover{
-      background:rgba(255,255,255,.05);
+    nav {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 1000;
+      background: rgba(6,17,29,.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
     }
 
-    header{
-      position:sticky;
-      top:0;
-      z-index:50;
-      backdrop-filter:blur(12px);
-      background:rgba(11,18,32,.72);
-      border-bottom:1px solid rgba(255,255,255,.06);
+    .nav-wrap {
+      min-height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 12px 0;
     }
 
-    .nav{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:14px;
-      padding:14px 0;
-    }
-
-    .logo{
-      font-size:18px;
-      font-weight:900;
-      letter-spacing:-.2px;
-    }
-
-    .logo span{color:var(--brand)}
-
-    .hero{
-      padding:72px 0 36px;
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.1fr .9fr;
-      gap:28px;
-      align-items:center;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:8px;
-      padding:8px 14px;
-      border-radius:999px;
-      border:1px solid rgba(255,255,255,.10);
-      background:rgba(255,255,255,.04);
-      color:#dbeafe;
-      font-size:14px;
-      margin-bottom:16px;
-    }
-
-    h1{
-      margin:0 0 18px;
-      font-size:clamp(32px,4vw,58px);
-      line-height:1.18;
-      letter-spacing:-.8px;
-    }
-
-    .hero p{
-      margin:0 0 14px;
-      color:var(--muted);
-      font-size:18px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:24px;
-    }
-
-    .hero-points{
-      display:flex;
-      flex-wrap:wrap;
-      gap:10px;
-      margin-top:22px;
-    }
-
-    .chip{
-      padding:9px 13px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid rgba(255,255,255,.08);
-      color:#e2e8f0;
-      font-size:14px;
-    }
-
-    .hero-card,
-    .card,
-    .cta-box,
-    .price-card,
-    .roi-card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:24px;
-      box-shadow:var(--shadow);
-    }
-
-    .hero-card{padding:22px}
-    .mock{
-      background:#0f172a;
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:18px;
-      padding:18px;
-    }
-
-    .mock-top{
-      display:flex;
-      gap:8px;
-      margin-bottom:14px;
-    }
-
-    .dot{
-      width:10px;height:10px;border-radius:50%;
-    }
-    .red{background:#ef4444}
-    .yellow{background:#f59e0b}
-    .green{background:#22c55e}
-
-    .panel{
-      background:#111827;
-      border:1px solid rgba(255,255,255,.06);
-      border-radius:16px;
-      padding:14px;
-      margin-bottom:12px;
-    }
-
-    .panel h4{
-      margin:0 0 10px;
-      font-size:15px;
-    }
-
-    .mini{
-      display:grid;
-      gap:10px;
-    }
-
-    .mini-item{
-      display:flex;
-      justify-content:space-between;
-      gap:10px;
-      padding:10px 12px;
-      background:#0b1220;
-      border-radius:12px;
-      color:#cbd5e1;
-      font-size:14px;
-    }
-
-    section{padding:36px 0}
-
-    .section-head{
-      text-align:center;
-      max-width:760px;
-      margin:0 auto 24px;
-    }
-
-    .section-head h2{
-      margin:0 0 10px;
-      font-size:clamp(24px,3vw,38px);
-      line-height:1.25;
-    }
-
-    .section-head p{
-      margin:0;
-      color:var(--muted);
-    }
-
-    .grid-2{
-      display:grid;
-      grid-template-columns:repeat(2,1fr);
-      gap:18px;
-    }
-
-    .grid-3{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:18px;
-    }
-
-    .card{
-      padding:22px;
-      transition:.25s ease;
-    }
-
-    .card:hover{
-      transform:translateY(-4px);
-      border-color:rgba(37,211,102,.22);
-    }
-
-    .icon{
-      width:54px;
-      height:54px;
-      border-radius:16px;
-      display:grid;
-      place-items:center;
-      background:rgba(37,211,102,.14);
-      color:#86efac;
-      font-size:24px;
-      margin-bottom:14px;
-    }
-
-    .card h3{
-      margin:0 0 10px;
-      font-size:20px;
-    }
-
-    .card p{
-      margin:0;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    .list-item{
-      display:flex;
-      gap:14px;
-      align-items:flex-start;
-      padding:16px;
-      background:rgba(255,255,255,.04);
-      border:1px solid rgba(255,255,255,.07);
-      border-radius:18px;
-    }
-
-    .bullet{
-      width:34px;
-      height:34px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      flex:0 0 34px;
-      background:rgba(37,211,102,.15);
-      color:#86efac;
-      font-weight:800;
-      font-size:14px;
-    }
-
-    .list-item strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:16px;
-    }
-
-    .list-item span{
-      display:block;
-      color:var(--muted);
-      font-size:15px;
-    }
-    
-    /* ROI & Trust Signals Styles */
-    .roi-card {
-      padding: 24px;
-      text-align: center;
-      background: linear-gradient(145deg, rgba(245,158,11,.08), rgba(255,255,255,.03));
-      border-color: rgba(245,158,11,.15);
-    }
-    
-    .roi-number {
-      font-size: 48px;
+    .logo {
+      font-size: 24px;
       font-weight: 900;
-      color: var(--accent);
-      line-height: 1.1;
-      margin-bottom: 8px;
-      direction: ltr;
+      color: #fff;
+      white-space: nowrap;
     }
-    
-    .trust-stat {
-      font-size: 32px;
+
+    .logo span { color: var(--green); }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-primary,
+    .btn-outline,
+    .btn-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      min-height: 50px;
+      padding: 14px 22px;
+      border-radius: 999px;
       font-weight: 800;
-      color: var(--brand);
-      margin-bottom: 5px;
+      transition: .25s ease;
+      cursor: pointer;
+      border: 0;
+      text-align: center;
     }
 
-    .pricing{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:18px;
+    .btn-primary,
+    .btn-whatsapp {
+      background: var(--green);
+      color: #04110a;
+      box-shadow: var(--shadow-green);
     }
 
-    .price-card{
-      padding:24px;
-      background:linear-gradient(180deg, rgba(37,211,102,.08), rgba(255,255,255,.03));
-      border-color:rgba(37,211,102,.18);
+    .btn-primary:hover,
+    .btn-whatsapp:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
     }
 
-    .tag{
-      display:inline-block;
-      padding:7px 12px;
-      border-radius:999px;
-      background:rgba(245,158,11,.14);
-      border:1px solid rgba(245,158,11,.22);
-      color:#fde68a;
-      font-size:13px;
-      margin-bottom:14px;
+    .btn-outline {
+      border: 1px solid var(--green);
+      background: transparent;
+      color: var(--green);
     }
 
-    .price-title{
-      font-size:16px;
-      color:#dcfce7;
-      margin-bottom:10px;
-      font-weight:800;
+    .btn-outline:hover {
+      background: rgba(32,245,122,.08);
     }
 
-    .price-value{
-      font-size:42px;
-      line-height:1.1;
-      margin-bottom:10px;
-      font-weight:900;
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 134px 0 88px;
+      position: relative;
+      overflow: clip;
+      background:
+        radial-gradient(circle at 85% 18%, rgba(32,245,122,.08), transparent 28%),
+        radial-gradient(circle at 12% 88%, rgba(34,140,255,.08), transparent 30%),
+        linear-gradient(180deg, #06111d 0%, #071320 100%);
     }
 
-    .price-note{
-      color:var(--muted);
-      margin-bottom:14px;
-      font-size:15px;
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("hero.png") center/cover no-repeat;
+      opacity: .035;
+      pointer-events: none;
     }
 
-    .cta-box{
-      padding:32px 24px;
-      text-align:center;
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1.02fr .98fr;
+      gap: 56px;
+      align-items: center;
     }
 
-    .cta-box h2{
-      margin:0 0 10px;
-      font-size:clamp(24px,3vw,36px);
+    .badge,
+    .section-badge {
+      display: inline-block;
+      padding: 7px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(32,245,122,.22);
+      background: rgba(32,245,122,.08);
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 800;
+      margin-bottom: 18px;
+      letter-spacing: .2px;
     }
 
-    .cta-box p{
-      margin:0 auto 18px;
-      max-width:720px;
-      color:var(--muted);
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.12;
+      font-weight: 950;
+      margin-bottom: 18px;
     }
 
-    footer{
-      padding:24px 0 40px;
-      text-align:center;
-      color:#94a3b8;
-      font-size:14px;
+    .hero h1 span { color: var(--green); }
+
+    .hero p {
+      max-width: 640px;
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 28px;
     }
 
-    .sticky-wa{
-      position:fixed;
-      left:18px;
-      bottom:18px;
-      z-index:60;
+    .hero-btns {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
     }
 
-    .wa-float{
-      width:60px;
-      height:60px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      background:var(--brand);
-      color:white;
-      box-shadow:0 14px 30px rgba(37,211,102,.35);
-      transition:.25s ease;
-      font-size:28px;
+    .hero-note {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 16px;
+      font-weight: 600;
     }
 
-    .wa-float:hover{
-      transform:translateY(-3px) scale(1.03);
-      background:var(--brand-dark);
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 28px;
+      margin-top: 34px;
     }
 
-    @media (max-width:980px){
+    .hero-stat {
+      text-align: center;
+      min-width: 84px;
+    }
+
+    .hero-stat .num {
+      font-size: 28px;
+      color: var(--green);
+      font-weight: 900;
+    }
+
+    .hero-stat .label {
+      color: var(--text-muted);
+      font-size: 12px;
+    }
+
+    .hero-media {
+      background: linear-gradient(180deg, rgba(255,255,255,.03), rgba(255,255,255,.01));
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      padding: 16px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .hero-media img {
+      width: 100%;
+      border-radius: 18px;
+    }
+
+    .section-head {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+
+    .section-title {
+      font-size: clamp(28px, 4vw, 42px);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 14px;
+    }
+
+    .section-title span { color: var(--green); }
+
+    .section-sub {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--text-muted);
+      font-size: 17px;
+    }
+
+    .proof-bar {
+      padding: 52px 0;
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .proof-grid,
+    .pain-grid,
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .proof-card,
+    .pain-card,
+    .feature-card,
+    .step,
+    .price-card,
+    .faq-item {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .proof-card {
+      padding: 28px;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .proof-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(32,245,122,.25);
+    }
+
+    .proof-card.featured {
+      position: relative;
+      border-color: rgba(32,245,122,.55);
+    }
+
+    .featured-badge {
+      position: absolute;
+      top: -12px;
+      right: 18px;
+      background: var(--green);
+      color: #07110b;
+      border-radius: 999px;
+      padding: 4px 12px;
+      font-size: 11px;
+      font-weight: 800;
+    }
+
+    .proof-quote {
+      font-size: 15px;
+      line-height: 1.9;
+      margin-bottom: 18px;
+      color: var(--text);
+      font-style: italic;
+    }
+
+    .proof-author {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 12px;
+    }
+
+    .proof-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: rgba(32,245,122,.1);
+      color: var(--green);
+      display: grid;
+      place-items: center;
+      font-weight: 900;
+      flex-shrink: 0;
+    }
+
+    .proof-name { font-size: 14px; font-weight: 800; }
+    .proof-location { font-size: 12px; color: var(--green); }
+
+    .proof-numbers {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+      margin-top: 42px;
+    }
+
+    .proof-num {
+      text-align: center;
+    }
+
+    .proof-num .n {
+      color: var(--green);
+      font-size: 38px;
+      font-weight: 900;
+    }
+
+    .proof-num .l {
+      color: var(--text-muted);
+      font-size: 13px;
+    }
+
+    .pain-card,
+    .feature-card,
+    .step {
+      padding: 28px;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .pain-card:hover,
+    .feature-card:hover,
+    .step:hover {
+      transform: translateY(-4px);
+      border-color: rgba(32,245,122,.32);
+    }
+
+    .pain-icon,
+    .feature-icon {
+      width: 56px;
+      height: 56px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: rgba(32,245,122,.08);
+      font-size: 26px;
+      margin-bottom: 16px;
+    }
+
+    .pain-title,
+    .feature-card h3,
+    .step h3 {
+      font-size: 18px;
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .pain-desc,
+    .feature-card p,
+    .step p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .how,
+    .pricing,
+    .contact {
+      background: var(--bg2);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 22px;
+      margin-top: 48px;
+      margin-bottom: 54px;
+    }
+
+    .step {
+      text-align: center;
+    }
+
+    .step-num {
+      width: 52px;
+      height: 52px;
+      margin: 0 auto 16px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      border: 2px solid var(--green);
+      background: rgba(32,245,122,.08);
+      color: var(--green);
+      font-size: 20px;
+      font-weight: 900;
+    }
+
+    .workflow-imgs,
+    .results-grid,
+    .contact-grid,
+    .pricing-grid,
+    .hero-grid {
+      display: grid;
+    }
+
+    .workflow-imgs {
+      grid-template-columns: 1fr 1fr;
+      gap: 22px;
+    }
+
+    .media-card {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      box-shadow: var(--shadow-card);
+    }
+
+    .media-card img {
+      width: 100%;
+    }
+
+    .roi-box {
+      margin-top: 48px;
+      padding: 54px 26px;
+      border-radius: 26px;
+      border: 1px solid var(--border);
+      background: linear-gradient(135deg, var(--bg2), var(--bg3));
+      position: relative;
+      overflow: hidden;
+      text-align: center;
+    }
+
+    .roi-box::before {
+      content: "";
+      position: absolute;
+      width: 320px;
+      height: 320px;
+      right: -80px;
+      top: -80px;
+      background: radial-gradient(circle, rgba(32,245,122,.08), transparent 65%);
+      border-radius: 50%;
+    }
+
+    .roi-top {
+      position: relative;
+      z-index: 1;
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 12px;
+    }
+
+    .roi-equation {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      margin: 28px 0;
+    }
+
+    .roi-item,
+    .roi-result {
+      min-width: 150px;
+      padding: 24px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(6,17,29,.8);
+    }
+
+    .roi-item .num,
+    .roi-result .num {
+      font-size: 38px;
+      font-weight: 900;
+      color: var(--green);
+    }
+
+    .roi-item .label,
+    .roi-result .label {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .roi-result {
+      border: 2px solid rgba(32,245,122,.5);
+      background: rgba(32,245,122,.08);
+    }
+
+    .roi-operator {
+      font-size: 34px;
+      color: var(--text-muted);
+      font-weight: 300;
+    }
+
+    .roi-vs {
+      position: relative;
+      z-index: 1;
+      margin-top: 18px;
+      color: var(--text-muted);
+      background: rgba(32,245,122,.05);
+      padding: 16px 18px;
+      border-radius: 14px;
+      font-size: 16px;
+    }
+
+    .roi-vs strong {
+      color: var(--green);
+      font-size: 20px;
+    }
+
+    .results-grid,
+    .contact-grid,
+    .pricing-grid {
+      grid-template-columns: 1fr 1fr;
+      gap: 34px;
+      align-items: center;
+      margin-top: 48px;
+    }
+
+    .results-imgs {
+      display: grid;
+      gap: 18px;
+    }
+
+    .results-text {
+      display: grid;
+      gap: 20px;
+    }
+
+    .result-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+
+    .result-check {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(32,245,122,.55);
+      background: rgba(32,245,122,.08);
+      color: var(--green);
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .result-item h4 {
+      font-size: 16px;
+      font-weight: 800;
+      margin-bottom: 4px;
+    }
+
+    .result-item p {
+      color: var(--text-muted);
+      font-size: 14px;
+    }
+
+    .pricing-grid {
+      max-width: 900px;
+      margin-inline: auto;
+      margin-top: 48px;
+    }
+
+    .price-card {
+      padding: 38px 32px;
+      text-align: center;
+      transition: transform .25s ease, border-color .25s ease;
+    }
+
+    .price-card:hover {
+      transform: translateY(-4px);
+    }
+
+    .price-card.popular {
+      position: relative;
+      border-color: rgba(32,245,122,.55);
+      transform: scale(1.03);
+    }
+
+    .price-card.popular:hover {
+      transform: scale(1.03) translateY(-4px);
+    }
+
+    .popular-badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: #07110b;
+      padding: 5px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    .price-type {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .price-name {
+      font-size: 24px;
+      font-weight: 900;
+      margin-bottom: 18px;
+    }
+
+    .price-amount {
+      color: var(--green);
+      font-size: 58px;
+      font-weight: 950;
+      line-height: 1;
+    }
+
+    .price-amount span {
+      color: var(--text-muted);
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .price-note {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin: 10px 0 20px;
+    }
+
+    .price-features {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+      text-align: right;
+    }
+
+    .price-feature {
+      display: flex;
+      justify-content: flex-end;
+      gap: 10px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      font-size: 14px;
+    }
+
+    .price-feature:last-child {
+      border-bottom: 0;
+      padding-bottom: 0;
+    }
+
+    .check { color: var(--green); font-weight: 900; }
+
+    .pricing-note {
+      margin: 8px 0 18px;
+      color: var(--danger);
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    .faq-list {
+      max-width: 860px;
+      margin: 48px auto 0;
+    }
+
+    .faq-item {
+      margin-bottom: 14px;
+      overflow: hidden;
+      transition: border-color .25s ease;
+    }
+
+    .faq-item:hover {
+      border-color: rgba(32,245,122,.35);
+    }
+
+    .faq-question {
+      width: 100%;
+      background: transparent;
+      border: 0;
+      color: var(--text);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      text-align: right;
+      padding: 22px 22px;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .faq-icon {
+      color: var(--green);
+      font-size: 24px;
+      line-height: 1;
+      transition: transform .22s ease;
+      flex-shrink: 0;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .28s ease;
+    }
+
+    .faq-answer-inner {
+      padding: 0 22px 22px;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .contact-info h3 {
+      font-size: 28px;
+      font-weight: 900;
+      margin-bottom: 16px;
+    }
+
+    .contact-info p {
+      color: var(--text-muted);
+      font-size: 16px;
+      margin-bottom: 24px;
+    }
+
+    .contact-features {
+      display: grid;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .contact-feature {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .contact-feature .icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 12px;
+      display: grid;
+      place-items: center;
+      background: rgba(32,245,122,.08);
+      flex-shrink: 0;
+    }
+
+    .form-wrapper {
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      min-height: 620px;
+    }
+
+    .form-wrapper iframe {
+      width: 100%;
+      height: 620px;
+      border: 0;
+      display: block;
+      filter: invert(.9) hue-rotate(180deg);
+    }
+
+    .cta-section {
+      text-align: center;
+      background:
+        radial-gradient(circle at center, rgba(32,245,122,.12), transparent 38%),
+        var(--bg);
+      padding: 100px 0;
+    }
+
+    .cta-section h2 {
+      font-size: clamp(30px, 4.5vw, 48px);
+      line-height: 1.15;
+      font-weight: 950;
+      margin-bottom: 16px;
+    }
+
+    .cta-section h2 span {
+      color: var(--green);
+    }
+
+    .cta-section p {
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    footer {
+      background: var(--bg2);
+      border-top: 1px solid var(--border);
+      padding: 40px 0;
+      text-align: center;
+    }
+
+    footer .logo {
+      display: inline-block;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 13px;
+      margin-bottom: 8px;
+    }
+
+    .wa-float {
+      position: fixed;
+      left: 18px;
+      bottom: 104px;
+      z-index: 999;
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: var(--green);
+      color: #07110b;
+      box-shadow: var(--shadow-green);
+      font-size: 28px;
+      transition: transform .25s ease;
+    }
+
+    .wa-float:hover {
+      transform: scale(1.08);
+    }
+
+    .sticky-cta {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 1001;
+      border-top: 1px solid var(--border);
+      background: rgba(6,17,29,.94);
+      backdrop-filter: blur(12px);
+      padding: 10px 14px calc(10px + env(safe-area-inset-bottom));
+    }
+
+    .sticky-cta-inner {
+      width: min(860px, 100%);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .sticky-copy {
+      color: var(--text-muted);
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.45;
+    }
+
+    .sticky-cta .btn-primary {
+      min-width: 190px;
+      min-height: 50px;
+      padding: 14px 20px;
+      white-space: nowrap;
+    }
+
+    .focus-ring:focus-visible,
+    .faq-question:focus-visible,
+    .btn-primary:focus-visible,
+    .btn-outline:focus-visible,
+    .btn-whatsapp:focus-visible,
+    .wa-float:focus-visible {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 992px) {
       .hero-grid,
-      .grid-2,
-      .grid-3,
-      .pricing{
-        grid-template-columns:1fr;
+      .results-grid,
+      .contact-grid,
+      .pricing-grid,
+      .workflow-imgs {
+        grid-template-columns: 1fr;
+      }
+
+      .proof-grid,
+      .pain-grid,
+      .features-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-media {
+        order: -1;
+      }
+
+      .price-card.popular,
+      .price-card.popular:hover {
+        transform: none;
       }
     }
 
-    @media (max-width:640px){
-      .hero{padding-top:48px}
-      .hero p{font-size:16px}
-      .hero-actions{flex-direction:column}
-      .btn{width:100%}
-      .nav .btn-ghost{display:none}
-      .sticky-wa{
-        left:14px;
-        bottom:14px;
+    @media (max-width: 768px) {
+      body { padding-bottom: 108px; }
+
+      nav .container {
+        width: min(100%, 92%);
+      }
+
+      .nav-wrap {
+        min-height: 68px;
+      }
+
+      .nav-links .btn-outline {
+        display: none;
+      }
+
+      section {
+        padding: 66px 0;
+      }
+
+      .hero {
+        padding: 104px 0 64px;
+      }
+
+      .hero p,
+      .section-sub,
+      .contact-info p,
+      .cta-section p {
+        font-size: 16px;
+      }
+
+      .proof-grid,
+      .pain-grid,
+      .features-grid,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-btns {
+        display: grid;
+        grid-template-columns: 1fr;
+      }
+
+      .hero-btns .btn-primary,
+      .hero-btns .btn-outline,
+      .sticky-cta .btn-primary {
+        width: 100%;
+      }
+
+      .proof-numbers {
+        gap: 26px;
+      }
+
+      .roi-equation {
+        gap: 14px;
+      }
+
+      .roi-item,
+      .roi-result {
+        width: 100%;
+      }
+
+      .sticky-cta-inner {
+        grid-template-columns: 1fr;
+      }
+
+      .wa-float {
+        left: 14px;
+        bottom: 102px;
+        width: 54px;
+        height: 54px;
+      }
+
+      .form-wrapper,
+      .form-wrapper iframe {
+        min-height: 560px;
+        height: 560px;
       }
     }
   </style>
 </head>
 <body>
 
-  <header>
-    <div class="container nav">
-      <div class="logo">ClientFlow <span>AI</span></div>
-      <div style="display:flex; gap:12px;">
-        <a class="btn btn-ghost" href="#pricing">الاستثمار</a>
-        <a class="btn btn-whatsapp" href="https://wa.me/201000045140?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9%20Demo%20%D9%84%D9%86%D8%B8%D8%A7%D9%85%20ClientFlow%20AI%20%D9%84%D9%85%D8%B7%D8%B9%D9%85%D9%8A." target="_blank" rel="noopener noreferrer">راسلنا على واتساب</a>
+  <nav aria-label="التنقل الرئيسي">
+    <div class="container nav-wrap">
+      <div class="logo">Client<span>Flow</span> AI</div>
+      <div class="nav-links">
+        <a class="btn-outline focus-ring" href="#how-it-works">كيف يعمل</a>
+        <a class="btn-whatsapp focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي." target="_blank" rel="noopener">احجز Demo</a>
       </div>
     </div>
-  </header>
+  </nav>
 
   <main>
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="badge fade-up">مخصص لمطاعم التوصيل في مصر</div>
-          <h1 class="fade-up delay-1">
-            ClientFlow AI: خليك شايف كل عميل من أول رسالة لحد ما يطلب
-          </h1>
-          <p class="fade-up delay-2">
-            كم عميل بيبعت لمطعمك على واتساب أو إنستجرام… وبيروح من غير ما حد يرجع له؟
-            ClientFlow AI هو نظام متابعة ذكي لمطاعم التوصيل، ينظم رسائل الواتساب والإنستجرام،
-            ويعمل Follow-up أوتوماتيكي مع العملاء اللي بدأوا الكلام ومكمّلوش، بدل ما الفرص تضيع في الزحمة.
-          </p>
-          <p class="fade-up delay-3">
-            النظام مصمم لمطاعم التوصيل في مصر، عشان يحوّل الرسائل العشوائية لمسار واضح:
-            من أول رسالة → تصنيف العميل → متابعة ذكية → رؤية أوضح للحالات المهمة،
-            بدون ما يزود ضغط على فريق التشغيل.
-          </p>
+          <div class="badge">مصمم لمطاعم الخليج اللي تعتمد على واتساب</div>
+          <h1>كل رسالة <span>واتساب</span> ممكن تكون طلب</h1>
+          <p>ClientFlow AI يحول واتساب مطعمك إلى AI Sales Agent يرد فوراً، يقفل الطلبات، ويتابع العملاء المترددين 24/7 — بدون ما تكبر الفريق أو تخسر مبيعات وقت الزحمة.</p>
 
-          <div class="hero-actions fade-up delay-4">
-            <a class="btn btn-whatsapp" href="https://wa.me/201000045140?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9%20Demo%20%D9%84%D9%86%D8%B8%D8%A7%D9%85%20ClientFlow%20AI%20%D9%84%D9%85%D8%B7%D8%B9%D9%85%D9%8A." target="_blank" rel="noopener noreferrer">اطلب Demo على واتساب</a>
-            <a class="btn btn-ghost" href="#how-it-works">شوف التنفيذ بيتم إزاي</a>
+          <div class="hero-btns">
+            <a class="btn-primary focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي." target="_blank" rel="noopener">احجز Demo لمطعمك الآن</a>
+            <a class="btn-outline focus-ring" href="#pricing">شوف الأسعار</a>
           </div>
 
-          <div class="hero-points fade-up delay-4">
-            <div class="chip">واتساب + إنستجرام</div>
-            <div class="chip">Setup خلال 7 - 14 يوم</div>
-            <div class="chip">مناسب للمطاعم الصغيرة والمتوسطة</div>
-            <div class="chip">بدون تعقيد تقني على فريقك</div>
+          <div class="hero-note">Demo مجاني • تشغيل خلال 7 إلى 14 يوم • بدون تعقيد تقني</div>
+
+          <div class="hero-stats" aria-label="مؤشرات رئيسية">
+            <div class="hero-stat">
+              <div class="num">24/7</div>
+              <div class="label">يعمل بلا توقف</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">&lt;1s</div>
+              <div class="label">سرعة الرد</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">7-14</div>
+              <div class="label">يوم للتشغيل</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">$80</div>
+              <div class="label">يبدأ شهرياً</div>
+            </div>
           </div>
         </div>
 
-        <div class="hero-card fade-up delay-3">
-          <div class="mock">
-            <div class="mock-top">
-              <span class="dot red"></span>
-              <span class="dot yellow"></span>
-              <span class="dot green"></span>
-            </div>
-
-            <div class="panel">
-              <h4>حالات تحتاج متابعة</h4>
-              <div class="mini">
-                <div class="mini-item"><span>عميل سأل عن المنيو</span><span>لم يكمل الطلب</span></div>
-                <div class="mini-item"><span>استفسار عن التوصيل</span><span>بانتظار رد</span></div>
-                <div class="mini-item"><span>طلب متوقف</span><span>محتاج متابعة</span></div>
-              </div>
-            </div>
-
-            <div class="panel">
-              <h4>قيمة النظام</h4>
-              <div class="mini">
-                <div class="mini-item"><span>تنظيم الرسائل</span><span>أفضل</span></div>
-                <div class="mini-item"><span>سرعة المتابعة</span><span>أوضح</span></div>
-                <div class="mini-item"><span>رؤية للحالات</span><span>أسهل</span></div>
-              </div>
-            </div>
-
-            <div class="panel">
-              <h4>القنوات</h4>
-              <div class="mini">
-                <div class="mini-item"><span>WhatsApp</span><span>أساسي</span></div>
-                <div class="mini-item"><span>Instagram</span><span>استفسارات</span></div>
-                <div class="mini-item"><span>Dashboard</span><span>متابعة</span></div>
-              </div>
-            </div>
-          </div>
+        <div class="hero-media">
+          <img
+            src="hero.png"
+            alt="بوت واتساب ذكي لمطاعم الخليج - ClientFlow AI"
+            width="1365"
+            height="768"
+            fetchpriority="high"
+            decoding="async"
+          />
         </div>
       </div>
     </section>
 
-    <section id="problems">
+    <section class="proof-bar" aria-label="رسائل الثقة">
       <div class="container">
-        <div class="section-head fade-up">
-          <h2>هل عندك واحد أو أكثر من المشاكل دي؟</h2>
-          <p>لو هذه المشاكل موجودة، فغالبًا عندك فرص شراء تضيع لأن المتابعة غير منظمة بالشكل الكافي.</p>
+        <div class="section-head">
+          <div class="section-badge">رسالة تبيع بسرعة</div>
         </div>
 
-        <div class="grid-2">
-          <div class="list-item fade-up">
-            <div class="bullet">1</div>
-            <div>
-              <strong>العميل بيسأل وبعدها يختفي</strong>
-              <span>في استفسارات تبدأ، لكن لا توجد متابعة واضحة تكمل المحادثة للنهاية.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-1">
-            <div class="bullet">2</div>
-            <div>
-              <strong>بطء في الرد</strong>
-              <span>الرد المتأخر يقلل فرصة تحويل الرسالة إلى طلب فعلي، خصوصًا وقت الزحمة.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-2">
-            <div class="bullet">3</div>
-            <div>
-              <strong>الرسائل موزعة ومشتتة</strong>
-              <span>واتساب وإنستجرام والمحادثات اليومية يجعلون المتابعة عشوائية إذا لم يوجد flow منظم.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-3">
-            <div class="bullet">4</div>
-            <div>
-              <strong>مافيش رؤية واضحة</strong>
-              <span>يصعب معرفة من تم الرد عليه ومن يحتاج متابعة ومن ضاع بدون انتباه.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- NEW SECTION: ROI Focus -->
-    <section id="roi-focus">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>بلغة الأرقام.. ليه النظام ده استثمار مش تكلفة؟</h2>
-          <p>المطاعم بتخسر يومياً بسبب العملاء اللي بيسألوا ومبيكملوش. شوف الحسبة البسيطة دي:</p>
-        </div>
-        
-        <div class="roi-card fade-up delay-1">
-          <h3 style="margin-top:0;">لو بيضيع منك 10 أوردرات بس في اليوم</h3>
-          <p style="color:var(--muted); font-size:16px;">بمتوسط قيمة الأوردر 300 جنيه</p>
-          <div class="roi-number">90,000 EGP</div>
-          <p style="color:#f8fafc; font-size:18px; font-weight:bold;">خسارة شهرية من المبيعات الضائعة!</p>
-          <p style="color:var(--muted); margin-bottom:0; font-size:15px;">
-            ClientFlow AI بيسترجعلك نسبة كبيرة من المبيعات دي بمتابعة آلية بتكلفة اشتراك أقل بكتير من حجم الخسارة.
-          </p>
-        </div>
-      </div>
-    </section>
-
-    <section id="solution">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>ما هو ClientFlow AI؟</h2>
-          <p>هو نظام مخصص لمطاعم التوصيل في مصر يساعدك على تنظيم الرسائل والمتابعة بطريقة عملية تناسب الشغل اليومي.</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="card fade-up">
-            <div class="icon">💬</div>
-            <h3>تنظيم الرسائل</h3>
-            <p>ترتيب استقبال الرسائل والحالات بدل العشوائية، بحيث يبقى التعامل أوضح وأسهل على الفريق.</p>
-          </div>
-
-          <div class="card fade-up delay-1">
-            <div class="icon">🔁</div>
-            <h3>Follow-up أذكى</h3>
-            <p>متابعة العملاء الذين سألوا أو توقفوا في النص بدل ضياع الفرصة.</p>
-          </div>
-
-          <div class="card fade-up delay-2">
-            <div class="icon">📊</div>
-            <h3>رؤية أوضح</h3>
-            <p>Dashboard مبسطة تساعدك على مراجعة الحالات المهمة بطريقة أسهل.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    
-    <!-- NEW SECTION: Trust Signals -->
-    <section id="trust-signals">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>الأداء المتوقع من ClientFlow AI</h2>
-          <p>نظام مبني ليتفوق على قدرة البشر في المتابعة وقت الزحمة والضغط.</p>
-        </div>
-
-        <div class="grid-3">
-          <div class="card fade-up">
-            <div class="trust-stat">أقل من ثانية</div>
-            <h3 style="font-size:18px;">سرعة الرد الآلي</h3>
-            <p style="font-size:14px;">مقارنة بمتوسط 5-15 دقيقة للرد البشري وقت ضغط الأوردرات.</p>
-          </div>
-
-          <div class="card fade-up delay-1">
-            <div class="trust-stat">100%</div>
-            <h3 style="font-size:18px;">متابعة دقيقة (Follow-up)</h3>
-            <p style="font-size:14px;">لا يوجد عميل سيسأل عن المنيو ويتم نسيانه، النظام سيتابعه تلقائياً.</p>
-          </div>
-
-          <div class="card fade-up delay-2">
-            <div class="trust-stat">+20%</div>
-            <h3 style="font-size:18px;">تحسين متوقع للمبيعات</h3>
-            <p style="font-size:14px;">بناءً على تحويل العملاء المترددين (Leads) إلى أوردرات فعلية عبر المتابعة.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="benefits">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>ماذا ستحصل؟</h2>
-          <p>الهدف هنا ليس إضافة أداة فقط، بل بناء طريقة متابعة أوضح تقلل الضياع وتحسن سير العمل.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="list-item fade-up">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>تنظيم رحلة العميل</strong>
-              <span>من أول رسالة حتى إتمام الطلب أو المتابعة.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-1">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>ردود أولية أسرع</strong>
-              <span>لتقليل وقت الانتظار وتحسين الانطباع الأول.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-2">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>متابعة للعملاء غير المكتملين</strong>
-              <span>حتى لا تضيع فرص الشراء بسهولة.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-3">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>تصنيف للحالات والعملاء</strong>
-              <span>لتسهيل المتابعة واتخاذ القرار اليومي.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>Dashboard بسيطة</strong>
-              <span>تعطيك رؤية أسرع للحالات المهمة والمتابعة.</span>
-            </div>
-          </div>
-
-          <div class="list-item fade-up delay-1">
-            <div class="bullet">✓</div>
-            <div>
-              <strong>تنفيذ عملي يناسب المطعم</strong>
-              <span>بدون تعقيد تقني على فريق التشغيل.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="how-it-works">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>التنفيذ بيتم إزاي؟</h2>
-          <p>التسليم يتم على مراحل واضحة حتى يكون النظام مناسبًا لطبيعة الشغل داخل المطعم.</p>
-        </div>
-
-        <div class="grid-2">
-          <div class="card fade-up">
-            <div class="icon">1</div>
-            <h3>فهم طريقة الشغل الحالية</h3>
-            <p>نراجع أين تدخل الرسائل، وفين يحصل التأخير أو ضياع العميل، وما أول نقطة تحتاج تنظيم.</p>
-          </div>
-
-          <div class="card fade-up delay-1">
-            <div class="icon">2</div>
-            <h3>تجهيز الـ Setup</h3>
-            <p>نجهز flow المتابعة الأساسي بما يناسب طريقة شغل مطعمك اليومية.</p>
-          </div>
-
-          <div class="card fade-up delay-2">
-            <div class="icon">3</div>
-            <h3>التشغيل الأولي</h3>
-            <p>نشغل النظام بشكل عملي ونتأكد أن طريقة الاستخدام واضحة ومناسبة.</p>
-          </div>
-
-          <div class="card fade-up delay-3">
-            <div class="icon">4</div>
-            <h3>المتابعة والتحسين</h3>
-            <p>بعد التأسيس تبدأ الإدارة الشهرية لمراجعة الأداء وتحسين الـ flow عند الحاجة.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section id="pricing">
-      <div class="container">
-        <div class="section-head fade-up">
-          <h2>الاستثمار</h2>
-          <p>هيكل السعر واضح: مرة واحدة للتأسيس، ثم رسوم شهرية للإدارة والمتابعة.</p>
-        </div>
-
-        <div class="pricing">
-          <div class="price-card fade-up">
-            <div class="tag">رسوم مرة واحدة</div>
-            <div class="price-title">Setup Fee</div>
-            <div class="price-value">3,000 جنيه</div>
-            <div class="price-note">تشمل تجهيز ClientFlow AI لأول مرة وضبط طريقة المتابعة الأساسية بما يناسب المطعم.</div>
-
-            <div class="list-item">
-              <div class="bullet">✓</div>
+        <div class="proof-grid">
+          <article class="proof-card featured">
+            <div class="featured-badge">نتيجة فعلية</div>
+            <p class="proof-quote">"قبل ClientFlow كنا نخسر طلبات وقت الزحمة. الآن الرد أسرع والطلبات تتقفل بشكل أوضح من نفس محادثة واتساب."</p>
+            <div class="proof-author">
               <div>
-                <strong>مراجعة طريقة العمل الحالية</strong>
-                <span>لتحديد أين يحدث التأخير أو ضياع العملاء.</span>
+                <div class="proof-name">مطعم الحاكورة</div>
+                <div class="proof-location">الكويت</div>
               </div>
+              <div class="proof-avatar">ح</div>
             </div>
-            <div style="height:10px"></div>
-            <div class="list-item">
-              <div class="bullet">✓</div>
+          </article>
+
+          <article class="proof-card">
+            <p class="proof-quote">"بدل ما فريقك يرد على نفس الأسئلة يومياً، النظام يخفف الضغط ويحول واتساب إلى قناة بيع حقيقية."</p>
+            <div class="proof-author">
               <div>
-                <strong>تجهيز flow المتابعة</strong>
-                <span>لبناء طريقة تنظيم أولية للحالات والرسائل.</span>
+                <div class="proof-name">مناسب للمطاعم المعتمدة على واتساب</div>
+                <div class="proof-location">الخليج العربي</div>
               </div>
+              <div class="proof-avatar">و</div>
             </div>
-            <div style="height:10px"></div>
-            <div class="list-item">
-              <div class="bullet">✓</div>
+          </article>
+
+          <article class="proof-card">
+            <p class="proof-quote">"كل يوم تأخير = طلبات تضيع. الفكرة ليست مجرد بوت، بل نظام يرد ويبيع ويتابع."</p>
+            <div class="proof-author">
               <div>
-                <strong>تشغيل أولي عملي</strong>
-                <span>حتى يبدأ النظام بصورة واضحة ومناسبة للشغل اليومي.</span>
+                <div class="proof-name">ClientFlow AI</div>
+                <div class="proof-location">Revenue Engine</div>
               </div>
+              <div class="proof-avatar">C</div>
+            </div>
+          </article>
+        </div>
+
+        <div class="proof-numbers">
+          <div class="proof-num"><div class="n">24/7</div><div class="l">يعمل بلا توقف</div></div>
+          <div class="proof-num"><div class="n">&lt;1s</div><div class="l">رد فوري</div></div>
+          <div class="proof-num"><div class="n">7-14</div><div class="l">يوم للتشغيل</div></div>
+          <div class="proof-num"><div class="n">$80</div><div class="l">اشتراك شهري</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pain">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">المشكلة اليومية</div>
+          <h2 class="section-title">طلبات تضيع لأن <span>الرد متأخر</span> أو المتابعة غائبة</h2>
+          <p class="section-sub">لو مطعمك يعتمد على واتساب، فالمشكلة غالباً ليست في عدد الرسائل، بل في ضياع الفرص بين الرسائل.</p>
+        </div>
+
+        <div class="pain-grid">
+          <article class="pain-card">
+            <div class="pain-icon">💬</div>
+            <h3 class="pain-title">عملاء يسألون ويختفون</h3>
+            <p class="pain-desc">العميل يطلب المنيو أو السعر ثم يختفي لأن لا أحد تابعه في الوقت المناسب.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon">⏱️</div>
+            <h3 class="pain-title">بطء الرد وقت الزحمة</h3>
+            <p class="pain-desc">وقت الذروة يجعل الرد اليدوي أبطأ، والعميل يذهب إلى منافس أسرع.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon">📱</div>
+            <h3 class="pain-title">واتساب شغال… لكن لا يبيع بكفاءة</h3>
+            <p class="pain-desc">وجود الرسائل لا يعني وجود نظام. بدون تنظيم ومتابعة، المبيعات تضيع.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon">👁️</div>
+            <h3 class="pain-title">لا رؤية واضحة للطلبات</h3>
+            <p class="pain-desc">يصعب معرفة من أكمل الطلب، ومن توقف، ومن يحتاج متابعة سريعة.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon">😓</div>
+            <h3 class="pain-title">فريقك يستهلك وقته في التكرار</h3>
+            <p class="pain-desc">فريقك يقضي وقتاً كبيراً في نفس الأسئلة بدلاً من التركيز على التشغيل والخدمة.</p>
+          </article>
+
+          <article class="pain-card">
+            <div class="pain-icon">💸</div>
+            <h3 class="pain-title">مبيعات ضائعة كل يوم</h3>
+            <p class="pain-desc">كل عميل متردد لا تتم متابعته يمثل فرصة بيع خرجت من الباب.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how-it-works">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">كيف يشتغل</div>
+          <h2 class="section-title">من الرسالة إلى <span>الطلب</span> في 4 خطوات</h2>
+          <p class="section-sub">رحلة واضحة وسريعة تجعل واتساب يعمل كأنه موظف مبيعات لا ينام.</p>
+        </div>
+
+        <div class="steps">
+          <article class="step">
+            <div class="step-num">1</div>
+            <h3>العميل يرسل</h3>
+            <p>يرسل استفساراً أو يطلب المنيو أو يبدأ الطلب على واتساب مطعمك.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">2</div>
+            <h3>النظام يرد فوراً</h3>
+            <p>يفهم الرسالة ويرد بسرعة بمعلومات مناسبة وواضحة.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">3</div>
+            <h3>يقفل الطلب</h3>
+            <p>يجمع التفاصيل ويؤكد الطلب بطريقة منظمة بدون تدخل مستمر من الفريق.</p>
+          </article>
+
+          <article class="step">
+            <div class="step-num">4</div>
+            <h3>يسجل ويتابع</h3>
+            <p>يحفظ البيانات ويعطيك رؤية أوضح للطلبات والعملاء والمتابعة.</p>
+          </article>
+        </div>
+
+        <div class="workflow-imgs">
+          <figure class="media-card">
+            <img
+              src="workflow-design.png"
+              alt="تصميم Workflow توضيحي لنظام ClientFlow AI"
+              width="1366"
+              height="768"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+
+          <figure class="media-card">
+            <img
+              src="workflow-real.png.png"
+              alt="Workflow حقيقي لنظام ClientFlow AI"
+              width="1366"
+              height="768"
+              loading="lazy"
+              decoding="async"
+            />
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="roi">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">بلغة الأرقام</div>
+          <h2 class="section-title">ClientFlow AI <span>استثمار</span> وليس تكلفة</h2>
+          <p class="section-sub">حتى عدد قليل من الطلبات الضائعة يومياً قد يكون أغلى من الاشتراك الشهري كله.</p>
+        </div>
+
+        <div class="roi-box">
+          <p class="roi-top">إذا ضاع منك 10 طلبات يومياً فقط</p>
+
+          <div class="roi-equation" aria-label="معادلة توضيحية للخسارة الشهرية">
+            <div class="roi-item">
+              <div class="num">10</div>
+              <div class="label">طلب يومي ضائع</div>
+            </div>
+            <div class="roi-operator">×</div>
+            <div class="roi-item">
+              <div class="num">$10</div>
+              <div class="label">متوسط قيمة الطلب</div>
+            </div>
+            <div class="roi-operator">×</div>
+            <div class="roi-item">
+              <div class="num">30</div>
+              <div class="label">يوم في الشهر</div>
+            </div>
+            <div class="roi-operator">=</div>
+            <div class="roi-result">
+              <div class="num">$3,000</div>
+              <div class="label">خسارة شهرية محتملة</div>
             </div>
           </div>
 
-          <div class="price-card fade-up delay-1">
-            <div class="tag">رسوم شهرية</div>
-            <div class="price-title">Monthly Management</div>
-            <div class="price-value">2,000 جنيه</div>
-            <div class="price-note">تشمل المتابعة المستمرة، مراجعة الأداء، تحسين الـ flow، والحفاظ على النظام شغال بكفاءة.</div>
-
-            <div class="list-item">
-              <div class="bullet">✓</div>
-              <div>
-                <strong>متابعة وتحسين</strong>
-                <span>تحسين طريقة العمل حسب الاستخدام الفعلي داخل المطعم.</span>
-              </div>
-            </div>
-            <div style="height:10px"></div>
-            <div class="list-item">
-              <div class="bullet">✓</div>
-              <div>
-                <strong>مراجعة الأداء</strong>
-                <span>لفهم أين يوجد تحسن وأين توجد فرص إضافية.</span>
-              </div>
-            </div>
-            <div style="height:10px"></div>
-            <div class="list-item">
-              <div class="bullet">✓</div>
-              <div>
-                <strong>استمرار التشغيل</strong>
-                <span>حتى يظل النظام فعالًا ولا يتوقف بعد التسليم الأول.</span>
-              </div>
-            </div>
+          <div class="roi-vs">
+            ClientFlow AI يبدأ من <strong>$80 فقط / شهر</strong> ليحول واتساب من عبء إلى فرصة بيع
           </div>
         </div>
       </div>
     </section>
 
-    <section>
+    <section class="features">
       <div class="container">
-        <div class="cta-box fade-up">
-          <h2>لو حابب تشوف ClientFlow AI على مطعمك، راسلنا الآن على واتساب</h2>
-          <p>
-            أرسل لنا رسالة الآن، وسنشاركك تصورًا سريعًا يوضح كيف يمكن تطبيق ClientFlow AI
-            على طريقة شغل مطعمك بشكل عملي وواضح.
-          </p>
-          <a class="btn btn-whatsapp" href="https://wa.me/201000045140?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9%20Demo%20%D9%84%D9%86%D8%B8%D8%A7%D9%85%20ClientFlow%20AI%20%D9%84%D9%85%D8%B7%D8%B9%D9%85%D9%8A." target="_blank" rel="noopener noreferrer">ابدأ المحادثة الآن</a>
+        <div class="section-head">
+          <div class="section-badge">المميزات</div>
+          <h2 class="section-title">كل ما يحتاجه <span>مطعمك</span> في نظام واحد</h2>
+          <p class="section-sub">مبني حول النتيجة التجارية: رد أسرع، طلبات أكثر، وتشغيل أوضح.</p>
         </div>
+
+        <div class="features-grid">
+          <article class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>رد فوري</h3>
+            <p>النظام يرد في لحظات، وهذا مهم عندما يكون العميل مستعجلاً أو يقارن بين عدة مطاعم.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🤖</div>
+            <h3>يفهم العربية</h3>
+            <p>يتعامل مع اللغة العربية واللهجات الخليجية بطريقة أقرب للمحادثة الطبيعية.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📋</div>
+            <h3>إغلاق الطلب تلقائياً</h3>
+            <p>ينقل العميل من السؤال إلى تأكيد الطلب بخطوات واضحة ومنظمة.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>رؤية وتشغيل أوضح</h3>
+            <p>يجمع لك البيانات والطلبات في صورة أسهل للمتابعة واتخاذ القرار.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🔄</div>
+            <h3>متابعة المترددين</h3>
+            <p>يعطيك فرصة لاسترجاع العملاء الذين توقفوا قبل إكمال الطلب.</p>
+          </article>
+
+          <article class="feature-card">
+            <div class="feature-icon">🛡️</div>
+            <h3>تشغيل أكثر انضباطاً</h3>
+            <p>يقلل الفوضى في الردود ويجعل تجربة العميل والفريق أكثر انتظاماً.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="results">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">شاهد النظام فعلياً</div>
+          <h2 class="section-title">ليس مجرد كلام… هذا هو <span>الشكل العملي</span></h2>
+          <p class="section-sub">صورة المحادثة تقنع، لأنها تُظهر كيف يتحول السؤال إلى طلب مؤكد داخل واتساب.</p>
+        </div>
+
+        <div class="results-grid">
+          <div class="results-imgs">
+            <figure class="media-card">
+              <img
+                src="chat.png"
+                alt="محادثة واتساب حقيقية يظهر فيها ClientFlow تأكيد الطلب"
+                width="876"
+                height="328"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+
+            <figure class="media-card">
+              <img
+                src="hero.png"
+                alt="عرض بصري لمنتج ClientFlow AI لمطاعم الخليج"
+                width="1365"
+                height="768"
+                loading="lazy"
+                decoding="async"
+              />
+            </figure>
+          </div>
+
+          <div class="results-text">
+            <article class="result-item">
+              <div class="result-check">✓</div>
+              <div>
+                <h4>العميل يرى ردًا واضحًا فوراً</h4>
+                <p>بدل الانتظار، يحصل العميل على إجابة أو خطوة تالية مباشرة من نفس المحادثة.</p>
+              </div>
+            </article>
+
+            <article class="result-item">
+              <div class="result-check">✓</div>
+              <div>
+                <h4>الطلب يقترب من الإغلاق أسرع</h4>
+                <p>كل رسالة تصبح جزءًا من مسار بيع، لا مجرد محادثة عشوائية.</p>
+              </div>
+            </article>
+
+            <article class="result-item">
+              <div class="result-check">✓</div>
+              <div>
+                <h4>الصورة تبيع قبل النص أحيانًا</h4>
+                <p>لذلك وضعنا visual proof حقيقي يوضح المخرجات بدل الاعتماد على الكلام فقط.</p>
+              </div>
+            </article>
+
+            <article class="result-item">
+              <div class="result-check">✓</div>
+              <div>
+                <h4>مناسب لحملات واتساب والإعلانات</h4>
+                <p>الرسالة واضحة، سريعة، وسهلة الإرسال والمشاركة في الإعلان أو البوست أو الواتساب.</p>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="pricing" id="pricing">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">الأسعار</div>
+          <h2 class="section-title">سعر <span>واضح</span> وعرض مفهوم</h2>
+          <p class="section-sub">رسوم تأسيس مرة واحدة، ثم اشتراك شهري مُدار يشمل التشغيل والاستضافة والدعم المستمر.</p>
+        </div>
+
+        <div class="pricing-grid">
+          <article class="price-card">
+            <div class="price-type">مرة واحدة فقط</div>
+            <h3 class="price-name">Implementation &amp; Onboarding</h3>
+            <div class="price-amount">$150<span> </span></div>
+            <div class="price-note">رسوم تأسيس تُدفع مرة واحدة</div>
+
+            <div class="price-features">
+              <div class="price-feature"><span class="check">✓</span> إعداد النظام كاملاً</div>
+              <div class="price-feature"><span class="check">✓</span> ربط واتساب Business API</div>
+              <div class="price-feature"><span class="check">✓</span> إعداد المنيو والذكاء الاصطناعي</div>
+              <div class="price-feature"><span class="check">✓</span> تدريب الفريق</div>
+              <div class="price-feature"><span class="check">✓</span> تشغيل وإطلاق</div>
+            </div>
+
+            <div class="pricing-note">* لا تشمل استضافة السيرفر</div>
+
+            <a class="btn-outline focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى أعرف تفاصيل رسوم التأسيس لنظام ClientFlow AI." target="_blank" rel="noopener" style="display:flex;">
+              استفسر عن التأسيس
+            </a>
+          </article>
+
+          <article class="price-card popular">
+            <div class="popular-badge">الأكثر طلباً</div>
+            <div class="price-type">شهرياً بعد التأسيس</div>
+            <h3 class="price-name">Managed AI Infrastructure</h3>
+            <div class="price-amount">$80<span>/شهر</span></div>
+            <div class="price-note">إدارة + تشغيل + استضافة + دعم مستمر</div>
+
+            <div class="price-features">
+              <div class="price-feature"><span class="check">✓</span> استضافة السيرفر مشمولة</div>
+              <div class="price-feature"><span class="check">✓</span> إدارة وتشغيل كامل</div>
+              <div class="price-feature"><span class="check">✓</span> Monitoring &amp; backups</div>
+              <div class="price-feature"><span class="check">✓</span> دعم فني مستمر</div>
+              <div class="price-feature"><span class="check">✓</span> تحديثات وتحسين مستمر</div>
+              <div class="price-feature"><span class="check">✓</span> مراجعة أداء شهرية</div>
+            </div>
+
+            <a class="btn-primary focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo وأفهم كيف أبدأ مع ClientFlow AI لمطعمي." target="_blank" rel="noopener" style="display:flex;">
+              احجز Demo وابدأ البيع أسرع
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">الأسئلة الشائعة</div>
+          <h2 class="section-title">كل ما تريد <span>معرفته</span></h2>
+        </div>
+
+        <div class="faq-list">
+          <article class="faq-item active">
+            <button class="faq-question" type="button" aria-expanded="true">
+              <span>هل أحتاج خبرة تقنية لتشغيل النظام؟</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">لا. نحن نتولى الإعداد والتشغيل. كل ما تحتاجه هو رقم واتساب Business وقائمة المنيو، والباقي علينا.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>كم يستغرق تجهيز النظام؟</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">عادة من 7 إلى 14 يوم عمل حسب جاهزية المنيو والرقم والإعدادات المطلوبة.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>هل يعمل مع الواتساب العادي أم Business فقط؟</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">يعمل مع WhatsApp Business API فقط، ونساعدك في التفعيل والتجهيز خطوة بخطوة.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>هل يدعم اللهجات الخليجية؟</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">نعم، ويتم تخصيصه حسب لهجة السوق وطريقة رد مطعمك والمنيو الخاص بك.</div>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question" type="button" aria-expanded="false">
+              <span>ماذا يحدث إذا أراد العميل التحدث مع شخص حقيقي؟</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <div class="faq-answer-inner">يمكن تحويل المحادثة لفريقك عند الحاجة مع الحفاظ على سياق المحادثة لتكملة الخدمة بدون ارتباك.</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact">
+      <div class="container">
+        <div class="section-head">
+          <div class="section-badge">تواصل معنا</div>
+          <h2 class="section-title">جاهز تحوّل <span>واتساب مطعمك</span> إلى آلة مبيعات؟</h2>
+        </div>
+
+        <div class="contact-grid">
+          <div class="contact-info">
+            <h3>ابدأ من هنا</h3>
+            <p>أرسل لنا بيانات مطعمك، وسنجهز لك Demo يوضح كيف سيعمل ClientFlow AI على حالتك الفعلية وليس بشكل عام.</p>
+
+            <div class="contact-features">
+              <div class="contact-feature">
+                <div class="icon">⚡</div>
+                <span>رد سريع في أوقات العمل</span>
+              </div>
+              <div class="contact-feature">
+                <div class="icon">🎯</div>
+                <span>Demo مجاني مخصص لمطعمك</span>
+              </div>
+              <div class="contact-feature">
+                <div class="icon">🔒</div>
+                <span>بياناتك محمية وسرية</span>
+              </div>
+              <div class="contact-feature">
+                <div class="icon">🌍</div>
+                <span>خدمة موجهة لأسواق الخليج</span>
+              </div>
+            </div>
+
+            <a class="btn-primary focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي." target="_blank" rel="noopener">
+              راسلنا مباشرة على واتساب
+            </a>
+          </div>
+
+          <div class="form-wrapper">
+            <iframe
+              src="https://docs.google.com/forms/d/e/1FAIpQLSenBRI4Ck4KiCOsR3W7On8ECuiaLb-wYwEbRINKRpRdFeNf7A/viewform?embedded=true"
+              title="نموذج التواصل - ClientFlow AI"
+              loading="lazy">
+              جارٍ التحميل...
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="container">
+        <h2>كل يوم تأخير = <span>طلبات تضيع</span></h2>
+        <p>إذا مطعمك يستقبل طلبات على واتساب، فالفرصة موجودة بالفعل. المطلوب فقط نظام يرد ويبيع ويتابع.</p>
+        <a class="btn-primary focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي." target="_blank" rel="noopener">
+          احجز Demo لمطعمك الآن
+        </a>
       </div>
     </section>
   </main>
 
   <footer>
-    جميع الحقوق محفوظة © ClientFlow AI
+    <div class="logo">Client<span>Flow</span> AI</div>
+    <p>AI Revenue Engine for Restaurants</p>
+    <p>الكويت | السعودية | الإمارات | البحرين | قطر | عُمان</p>
+    <p>جميع الحقوق محفوظة &copy; 2026 ClientFlow AI — Rawabat Digital Solutions</p>
   </footer>
 
-  <div class="sticky-wa">
-    <a class="wa-float" href="https://wa.me/201000045140?text=%D9%85%D8%B1%D8%AD%D8%A8%D9%8B%D8%A7%D8%8C%20%D8%A3%D8%B1%D9%8A%D8%AF%20%D9%85%D8%B4%D8%A7%D9%87%D8%AF%D8%A9%20Demo%20%D9%84%D9%86%D8%B8%D8%A7%D9%85%20ClientFlow%20AI%20%D9%84%D9%85%D8%B7%D8%B9%D9%85%D9%8A." target="_blank" rel="noopener noreferrer" aria-label="راسلنا على واتساب">
-      ✆
-    </a>
+  <a
+    class="wa-float focus-ring"
+    href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي."
+    target="_blank"
+    rel="noopener"
+    aria-label="راسلنا على واتساب">
+    💬
+  </a>
+
+  <div class="sticky-cta" aria-label="دعوة ثابتة للإجراء">
+    <div class="sticky-cta-inner">
+      <div class="sticky-copy">جاهز تشوف كيف نرفع طلبات واتساب في مطعمك؟ احجز Demo سريع من نفس الصفحة.</div>
+      <a class="btn-primary focus-ring" href="https://wa.me/201000045140?text=السلام عليكم، أبغى Demo يوضح كيف ClientFlow AI يرفع طلبات واتساب في مطعمي." target="_blank" rel="noopener">
+        احجز Demo الآن
+      </a>
+    </div>
   </div>
+
+  <script>
+    (() => {
+      const items = document.querySelectorAll('.faq-item');
+
+      function closeAll(except) {
+        items.forEach((item) => {
+          if (item !== except) {
+            item.classList.remove('active');
+            const btn = item.querySelector('.faq-question');
+            const answer = item.querySelector('.faq-answer');
+            btn.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = null;
+          }
+        });
+      }
+
+      items.forEach((item) => {
+        const btn = item.querySelector('.faq-question');
+        const answer = item.querySelector('.faq-answer');
+
+        if (item.classList.contains('active')) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+          btn.setAttribute('aria-expanded', 'true');
+        }
+
+        btn.addEventListener('click', () => {
+          const isOpen = item.classList.contains('active');
+          closeAll(item);
+
+          if (isOpen) {
+            item.classList.remove('active');
+            btn.setAttribute('aria-expanded', 'false');
+            answer.style.maxHeight = null;
+          } else {
+            item.classList.add('active');
+            btn.setAttribute('aria-expanded', 'true');
+            answer.style.maxHeight = answer.scrollHeight + 'px';
+          }
+        });
+      });
+    })();
+  </script>
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ClientFlow AI",
+    "description": "نظام ذكاء اصطناعي لأتمتة طلبات واتساب لمطاعم التوصيل في الخليج العربي",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web",
+    "offers": {
+      "@type": "Offer",
+      "price": "80",
+      "priceCurrency": "USD"
+    }
+  }
+  </script>
 
 </body>
 </html>
